@@ -12,6 +12,7 @@ local function requireFolder(folder)
             -- Strip ".lua" and replace "/" with "." for proper require syntax
             local requirePath = fullPath:gsub("%.lua$", ""):gsub("/", ".")
             require(requirePath)
+            print("loaded " .. requirePath)
         elseif info.type == "directory" then
             -- Recursively require files in subfolders
             requireFolder(fullPath)
@@ -20,4 +21,5 @@ local function requireFolder(folder)
 end
 
 -- Call the function for the folder you want to load files from
-requireFolder("builtin_mods")  -- Replace "scripts" with the folder you want to load
+requireFolder("builtin_mods/forgescrape_main")
+requireFolder("builtin_mods")
