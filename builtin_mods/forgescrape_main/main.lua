@@ -1,7 +1,7 @@
 world = {}
 
 fs.on("@load", function ()
-    
+
 end)
 
 fs.on("@update", function ()

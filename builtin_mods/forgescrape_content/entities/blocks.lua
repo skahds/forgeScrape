@@ -1,3 +1,6 @@
-fs.defineBlock("wall", {
-    
+fs.defineBlock("drill", {
+    activationCooldown = 1,
+    onActive = function ()
+        fs.trySpawnOre("")
+    end
 })

@@ -6,10 +6,10 @@ function entity:init(arg)
 end
 
 function entity:update()
-    if self.x == nil and self.spos then
+    if self.spos then
         self.x = self.spos.x*fs.tileSize
     end
-    if self.y == nil and self.spos then
+    if self.spos then
         self.y = self.spos.y*fs.tileSize
     end
 end
@@ -19,8 +19,10 @@ function entity:draw()
         
     else
         if self.x and self.y then
-            love.graphics.rectangle("fill", self.x, self.y, fs.tileSize, fs.tileSize)
+            love.graphics.rectangle("fill", self.x, self.y,
+            self.width or self.baseWidth or fs.tileSize,
+            self.height or self.baseHeight or fs.tileSize) 
         end
-
     end
 end
+

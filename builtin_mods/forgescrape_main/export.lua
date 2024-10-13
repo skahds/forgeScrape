@@ -8,7 +8,11 @@ local function addToTable(tbl, arg)
     end
 end
 
----defines a block
+---@param ent any
+function fs.addToWorld(ent)
+    table.insert(world, ent)
+end
+
 ---@param name string
 ---@param eType table
 function fs.defineBlock(name, eType)
@@ -18,17 +22,26 @@ function fs.defineBlock(name, eType)
 
 end
 
----spawns a block as spos
+---@param name string
+---@param eType table
+function fs.defineOre(name, eType)
+    eType.ore = true
+    fs.entities[name] = class(entity)
+    addToTable(fs.entities[name], eType)
+
+end
+
+
 ---@param name string
 ---@param spos table
 function fs.trySpawnBlock(name, spos)
     assert(fs.entities[name].block, "entity not a block")
-    table.insert(world, fs.entities[name]:new({spos = spos, x=spos.x*fs.tileSize, y=spos.y*fs.tileSize}))
+    fs.addToWorld(fs.entities[name]:new({spos = spos, x=spos.x*fs.tileSize, y=spos.y*fs.tileSize}))
     fs.call("forgeScrape:entitySpawned")
-
 end
 
 function fs.trySpawnOre(name, spos)
     assert(fs.entities[name].ore, "entity not an ore")
-    table.insert(world, fs.entities[name]:new({}))
+    fs.addToWorld(fs.entities[name]:new({spos = spos, x=spos.x*fs.tileSize, y=spos.y*fs.tileSize}))
+    fs.call("forgeScrape:entitySpawned")
 end
