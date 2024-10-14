@@ -9,6 +9,7 @@ fs.on("@update", function ()
         for index, entity in pairs(group) do
             if type(entity.update) == "function" then
                 entity:update()
+
             end
         end
     end

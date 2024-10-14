@@ -3,6 +3,7 @@ function entity:init(arg)
     for k, v in pairs(arg) do
         self[k] = v
     end
+
 end
 
 function entity:update()
@@ -24,4 +25,8 @@ function entity:draw()
             self.height or self.baseHeight or fs.tileSize) 
         end
     end
+end
+
+function entity:collided(ent)
+    
 end

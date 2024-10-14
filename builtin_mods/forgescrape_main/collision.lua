@@ -1,3 +1,5 @@
+-- probably not needed unless you want to make ores collide, maybe in the future?
+
 fs.collisionSystem = {}
 
 function fs.collisionSystem.AABB_Collision(a, b)

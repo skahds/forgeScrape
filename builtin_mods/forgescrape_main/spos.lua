@@ -18,9 +18,12 @@ end
 ---@param dx integer
 ---@param dy integer
 function spos:move(dx, dy)
+    
     self.x = self.x + dx
     self.y = self.y + dy
-    self.index = (self.x + dx) + ((self.y + dy) * fs.worldSize)
+
+
+    self.index = self.x + self.y * fs.worldSize
 end
 
 function spos:up(n)
