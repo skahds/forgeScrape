@@ -12,7 +12,7 @@ local function requireFolder(folder)
             -- Strip ".lua" and replace "/" with "." for proper require syntax
             local requirePath = fullPath:gsub("%.lua$", ""):gsub("/", ".")
             require(requirePath)
-            print("loaded " .. requirePath)
+            print("[" .. os.date() .."]: Loaded file " .. requirePath)
         elseif info.type == "directory" then
             -- Recursively require files in subfolders
             requireFolder(fullPath)

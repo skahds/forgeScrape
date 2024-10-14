@@ -1,6 +1,6 @@
 fs.entities = {}
 fs.tileSize = 32
-
+world = {unordered = {}}
 
 local function addToTable(tbl, arg)
     for k, v in pairs(arg) do
@@ -8,9 +8,21 @@ local function addToTable(tbl, arg)
     end
 end
 
+--[[ world is a table that contains indexes which are spos index, this allows for easy spatial partitioning
+
+]]
+
 ---@param ent any
 function fs.addToWorld(ent)
-    table.insert(world, ent)
+    if ent.spos then
+        if world[ent.spos.index] == nil then
+            world[ent.spos.index] = {}
+        end
+        table.insert(world[ent.spos.index], ent)
+    else
+        table.insert(world.unordered, ent)
+    end
+
 end
 
 ---@param name string

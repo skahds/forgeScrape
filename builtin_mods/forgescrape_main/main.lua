@@ -1,4 +1,3 @@
-world = {}
 fs.worldSize = 40
 
 fs.on("@load", function ()
@@ -6,13 +5,21 @@ fs.on("@load", function ()
 end)
 
 fs.on("@update", function ()
-    for i, entities in pairs(world) do
-        entities:update()
+    for _, group in pairs(world) do
+        for index, entity in pairs(group) do
+            if type(entity.update) == "function" then
+                entity:update()
+            end
+        end
     end
 end)
 
 fs.on("@render", function ()
-    for i, entities in pairs(world) do
-        entities:draw()
+    for _, group in pairs(world) do
+        for index, entity in pairs(group) do
+            if type(entity.draw) == "function" then
+                entity:draw()
+            end
+        end
     end
 end)
