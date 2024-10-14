@@ -29,7 +29,7 @@ end
 ---@param eType table
 function fs.defineBlock(name, eType)
     eType.block = true
-    fs.entities[name] = class(entity)
+    fs.entities[name] = class(fs.classes.block)
     addToTable(fs.entities[name], eType)
 
 end
@@ -38,7 +38,7 @@ end
 ---@param eType table
 function fs.defineOre(name, eType)
     eType.ore = true
-    fs.entities[name] = class(ore)
+    fs.entities[name] = class(fs.classes.ore)
     addToTable(fs.entities[name], eType)
 
 end

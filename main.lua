@@ -7,8 +7,9 @@ function love.load()
 
 end
 
-function love.update()
+function love.update(dt)
     fs.call("@update")
+    fs.updateStorage("dt", dt)
 end
 
 function love.draw()

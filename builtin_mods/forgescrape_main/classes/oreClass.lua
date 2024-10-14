@@ -1,4 +1,5 @@
-ore = class(entity)
+fs.classes.ore = class(entity)
+local ore = fs.classes.ore
 function ore:init(arg)
     entity:init(arg)
     if self.baseHeight and self.height == nil then
@@ -17,9 +18,9 @@ end
 function ore:checkCollision()
     if self.x and self.y then
         local affectedSpos = {}
-        -- table.insert(affectedSpos, fs.realCoordToPos(self.x, self.y))
+        
         -- need to check if it affects multiple tiles
-        -- local baseAfSpos = affectedSpos[1]
+
         for dx=0, math.floor(self.width/fs.tileSize) do
             for dy=0, math.floor(self.height/fs.tileSize) do
                 table.insert(affectedSpos, fs.realCoordToPos(self.x+dx*32, self.y+dy*32))

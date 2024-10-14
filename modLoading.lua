@@ -13,6 +13,12 @@ local function requireFolder(folder)
             local requirePath = fullPath:gsub("%.lua$", ""):gsub("/", ".")
             require(requirePath)
             print("[" .. os.date() .."]: Loaded file " .. requirePath)
+        elseif info.type == "file" and item:match("%.png$") then
+            -- Extract the file name without the extension
+            local fileName = item:gsub("%.png$", "")
+            -- Store the sprite with the file name as the key
+            fs.sprites[fileName] = love.graphics.newImage(fullPath)
+            print("[" .. os.date() .."]: Loaded image " .. fileName)
         elseif info.type == "directory" then
             -- Recursively require files in subfolders
             requireFolder(fullPath)
