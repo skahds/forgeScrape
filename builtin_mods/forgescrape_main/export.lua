@@ -38,7 +38,7 @@ end
 ---@param eType table
 function fs.defineOre(name, eType)
     eType.ore = true
-    fs.entities[name] = class(entity)
+    fs.entities[name] = class(ore)
     addToTable(fs.entities[name], eType)
 
 end

@@ -45,6 +45,10 @@ function fs.coordToPos(x, y, rotation)
     return spos:new({x=x, y=y, index=index, r=rotation or 0})
 end
 
+function fs.realCoordToPos(x, y, rotation)
+    return fs.coordToPos(math.floor(x/fs.tileSize), math.floor(y/fs.tileSize))
+end
+
 function fs.posToCoord(spos)
     assert(type(spos)=="table", "spos not a table")
     return spos.x*fs.tileSize, spos.y*fs.tileSize
