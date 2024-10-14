@@ -18,11 +18,13 @@ function fs.coordToPos(x, y, rotation)
 end
 
 function fs.posToCoord(spos)
+    assert(type(spos)=="table", "spos not a table")
     return spos.x*fs.tileSize, spos.y*fs.tileSize
 end
 
---WARNING: THE Y IS 0 INDEXED
+--WARNING: THE X AND Y IS 0 INDEXED
 function fs.indexToCoord(index)
+    assert(type(index)=="number", "index not a num")
     return {
         x = index % fs.worldSize,
         y = math.floor(index/fs.worldSize)
