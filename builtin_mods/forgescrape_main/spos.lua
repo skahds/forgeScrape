@@ -7,6 +7,34 @@ rotation = 0 (up), 1 (right), 2(down) or 3 (left)
 
 WARNING: THE X AND Y IS 0 INDEXED
 --]]
+spos = class()
+
+function spos:init(args)
+    for k, v in pairs(args) do
+        self[k] = v
+    end
+end
+
+---@param dx integer
+---@param dy integer
+function spos:move(dx, dy)
+    self.x = self.x + dx
+    self.y = self.y + dy
+    self.index = (self.x + dx) + ((self.y + dy) * fs.worldSize)
+end
+
+function spos:up(n)
+    self:move(0, -n)
+end
+function spos:down(n)
+    self:move(0, n)
+end
+function spos:left(n)
+    self:move(-n, 0)
+end
+function spos:right(n)
+    self:move(n, 0)
+end
 
 function fs.getPos(ent)
     return ent.spos
@@ -14,7 +42,7 @@ end
 
 function fs.coordToPos(x, y, rotation)
     local index = x + y * fs.worldSize
-    return {x=x, y=y, index=index, r=rotation or 0}
+    return spos:new({x=x, y=y, index=index, r=rotation or 0})
 end
 
 function fs.posToCoord(spos)
@@ -30,3 +58,4 @@ function fs.indexToCoord(index)
         y = math.floor(index/fs.worldSize)
     }    
 end
+
