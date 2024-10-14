@@ -1,4 +1,5 @@
 world = {}
+fs.worldSize = 40
 
 fs.on("@load", function ()
 

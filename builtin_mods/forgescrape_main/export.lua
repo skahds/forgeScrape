@@ -1,5 +1,5 @@
 fs.entities = {}
-fs.tileSize = 16
+fs.tileSize = 32
 
 
 local function addToTable(tbl, arg)
@@ -40,8 +40,9 @@ function fs.trySpawnBlock(name, spos)
     fs.call("forgeScrape:entitySpawned")
 end
 
-function fs.trySpawnOre(name, spos)
+function fs.trySpawnOre(name, x, y)
     assert(fs.entities[name].ore, "entity not an ore")
-    fs.addToWorld(fs.entities[name]:new({spos = spos, x=spos.x*fs.tileSize, y=spos.y*fs.tileSize}))
+    fs.addToWorld(fs.entities[name]:new({x=x, y=y}))
     fs.call("forgeScrape:entitySpawned")
 end
+

@@ -26,3 +26,9 @@ function entity:draw()
     end
 end
 
+function entity:checkCollision()
+    for i, obj in pairs(world) do
+        
+    end
+end
+
