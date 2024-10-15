@@ -1,7 +1,7 @@
 fs.classes.ore = class(entity)
 local ore = fs.classes.ore
 function ore:init(arg)
-    entity:init(arg)
+    entity.init(self, arg)
     if self.baseHeight and self.height == nil then
         self.height = self.baseHeight
     end

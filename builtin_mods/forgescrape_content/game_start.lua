@@ -3,8 +3,16 @@ local time = 0
 fs.on("@load", function ()
 
     -- bellow is just a test for spos
-    local spos = fs.coordToPos(1, 1)
-    fs.trySpawnBlock("conveyor", spos)
+    for i=1, 5 do
+        local spos = fs.coordToPos(i+3, 3)
+        fs.trySpawnBlock("conveyor", spos)
+    end
+    fs.trySpawnBlock("drill", fs.coordToPos(3, 3))
+    -- fs.trySpawnBlock("drill", fs.coordToPos(4, 2))
+    fs.trySpawnBlock("furnace", fs.coordToPos(9, 3))
+
+    fs.trySpawnOre("copper", 4*fs.tileSize, 3*fs.tileSize)
+
     print(spos.x)
     
 
@@ -13,21 +21,5 @@ fs.on("@load", function ()
 end)
 
 fs.on("@update", function ()
-    time = time + fs.get("dt")
-    if time > 2 then
-        for _, group in pairs(world) do
-            for index, entity in pairs(group) do
-                print(_, entity.spos.index)
-            end
-        end
-        local spos2 = fs.coordToPos(4, 3)
-        fs.trySpawnBlock("conveyor", spos2)
-        for _, group in pairs(world) do
-            for index, entity in pairs(group) do
-                print(_, entity.spos.index)
-            end
-        end
 
-        time = 0
-    end
 end)

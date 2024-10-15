@@ -5,6 +5,7 @@ function entity:init(arg)
     for k, v in pairs(arg) do
         self[k] = v
     end
+    
 end
 
 function entity:update()
@@ -17,7 +18,15 @@ end
 function entity:draw(index)
 
     if self.image then
-        love.graphics.draw(fs.sprites[self.image], self.x, self.y)
+        love.graphics.draw(
+        fs.sprites[self.image],
+        self.x+fs.sprites[self.image]:getWidth() / 2,
+        self.y+fs.sprites[self.image]:getHeight() / 2,
+        math.rad(self.spos.rotation*90),
+        1,
+        1,
+        fs.sprites[self.image]:getWidth() / 2,
+        fs.sprites[self.image]:getHeight() / 2)
     else
         if self.x and self.y then
             love.graphics.rectangle("fill", self.x, self.y,
@@ -29,4 +38,11 @@ end
 
 function entity:collided(ent)
     
+end
+
+function entity:getSpos()
+    if self.spos then
+        return self.spos
+    end
+    return nil
 end

@@ -19,12 +19,15 @@ function fs.addToWorld(ent, spos)
     else
         table.insert(world.unordered, ent)
     end
+end
 
-    --this is a cheap solution, i hate this
-    for index, group in pairs(world) do
-        for _, entity in pairs(group) do
-            if entity.block then
-                fs.fixPos(entity, index)
+function fs.deleteEnt(ent)
+    if ent.block then
+
+    else
+        for k, entity in pairs(world.unordered) do
+            if entity.x == ent.x and entity.y == ent.y then
+                table.remove(world.unordered, k)
             end
         end
     end
@@ -54,6 +57,7 @@ end
 function fs.trySpawnBlock(name, spos)
     assert(fs.entities[name].block, "entity not a block")
     print("Spawning block at", spos.x, spos.y, spos.index)
+    print("self rotation=", spos.rotation)
     local ent = fs.entities[name]:new({spos = spos})
     fs.addToWorld(ent, spos)
     fs.call("forgeScrape:entitySpawned")

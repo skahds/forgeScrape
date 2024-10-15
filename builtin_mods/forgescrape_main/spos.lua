@@ -38,6 +38,10 @@ end
 function spos:right(n)
     self:move(n, 0)
 end
+---rotates 90degree*n cw
+function spos:rotate(n)
+    self.rotation = (self.rotation + n)%4
+end
 
 function fs.getPos(ent)
     return ent.spos
@@ -45,12 +49,15 @@ end
 
 function fs.coordToPos(x, y, rotation)
     local index = x + y * fs.worldSize
-    return spos:new({x=x, y=y, index=index, r=rotation or 0})
+    local rotation = rotation or 0
+    return spos:new({x=x, y=y, index=index, rotation=rotation})
 end
 
 function fs.realCoordToPos(x, y, rotation)
     return fs.coordToPos(math.floor(x/fs.tileSize), math.floor(y/fs.tileSize))
 end
+
+
 
 function fs.posToCoord(spos)
     assert(type(spos)=="table", "spos not a table")
@@ -64,10 +71,4 @@ function fs.indexToCoord(index)
         x = index % fs.worldSize,
         y = math.floor(index/fs.worldSize)
     }    
-end
-
---temporary
-function fs.fixPos(entity, index)
-    local coord = fs.indexToCoord(index)
-    entity.spos = fs.coordToPos(coord.x, coord.y)
 end
