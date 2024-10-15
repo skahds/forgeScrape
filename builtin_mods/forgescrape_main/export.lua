@@ -13,12 +13,9 @@ end
 ]]
 
 ---@param ent any
-function fs.addToWorld(ent)
-    if ent.spos then
-        if world[ent.spos.index] == nil then
-            world[ent.spos.index] = {}
-        end
-        table.insert(world[ent.spos.index], ent)
+function fs.addToWorld(ent, spos)
+    if spos then
+        table.insert(world[spos.index], ent)
     else
         table.insert(world.unordered, ent)
     end
@@ -48,7 +45,9 @@ end
 ---@param spos table
 function fs.trySpawnBlock(name, spos)
     assert(fs.entities[name].block, "entity not a block")
-    fs.addToWorld(fs.entities[name]:new({spos = spos, x=spos.x*fs.tileSize, y=spos.y*fs.tileSize}))
+    print("Spawning block at", spos.x, spos.y, spos.index)
+    local ent = fs.entities[name]:new({spos = spos})
+    fs.addToWorld(ent, spos)
     fs.call("forgeScrape:entitySpawned")
 end
 
