@@ -8,20 +8,16 @@ function entity:init(arg)
 end
 
 function entity:update()
-    -- if self.spos then
-    --     self.x = self.spos.x*fs.tileSize
-    --     self.y = self.spos.y*fs.tileSize
-    -- end
-
+    if self.spos then
+        self.x = self.spos.x*fs.tileSize
+        self.y = self.spos.y*fs.tileSize
+    end
 end
 
 function entity:draw(index)
 
     if self.image then
-        --this is a cheap solution, i hate this
-        local x, y = fs.indexToCoord(index).x, fs.indexToCoord(index).y
-        -- love.graphics.draw(fs.sprites[self.image], self.x, self.y)
-        love.graphics.draw(fs.sprites[self.image], x*fs.tileSize, y*fs.tileSize)
+        love.graphics.draw(fs.sprites[self.image], self.x, self.y)
     else
         if self.x and self.y then
             love.graphics.rectangle("fill", self.x, self.y,

@@ -20,6 +20,14 @@ function fs.addToWorld(ent, spos)
         table.insert(world.unordered, ent)
     end
 
+    --this is a cheap solution, i hate this
+    for index, group in pairs(world) do
+        for _, entity in pairs(group) do
+            if entity.block then
+                fs.fixPos(entity, index)
+            end
+        end
+    end
 end
 
 ---@param name string

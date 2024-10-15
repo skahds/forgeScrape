@@ -66,3 +66,8 @@ function fs.indexToCoord(index)
     }    
 end
 
+--temporary
+function fs.fixPos(entity, index)
+    local coord = fs.indexToCoord(index)
+    entity.spos = fs.coordToPos(coord.x, coord.y)
+end
