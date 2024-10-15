@@ -8,7 +8,7 @@ fs.on("@load", function ()
         fs.trySpawnBlock("conveyor", spos)
     end
     fs.trySpawnBlock("drill", fs.coordToPos(3, 3))
-    -- fs.trySpawnBlock("drill", fs.coordToPos(4, 2))
+    fs.trySpawnBlock("drill", fs.coordToPos(5, 2, 1))
     fs.trySpawnBlock("furnace", fs.coordToPos(9, 3))
 
     fs.trySpawnOre("copper", 4*fs.tileSize, 3*fs.tileSize)

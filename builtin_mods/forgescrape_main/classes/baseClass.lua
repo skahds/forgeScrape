@@ -42,7 +42,7 @@ end
 
 function entity:getSpos()
     if self.spos then
-        return self.spos
+        return table.deepcopy(self.spos)
     end
     return nil
 end

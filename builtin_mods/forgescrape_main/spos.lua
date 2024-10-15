@@ -17,25 +17,47 @@ end
 
 ---@param dx integer
 ---@param dy integer
-function spos:move(dx, dy)
-    
-    self.x = self.x + dx
-    self.y = self.y + dy
+---@param rotationRelative boolean
+function spos:move(dx, dy, rotationRelative)
+    local rotationRelative = rotationRelative or false
+    if rotationRelative then
+        self.x = self.x + dx
+        self.y = self.y + dy
+    else
+        if self.rotation == 0 then
+            -- 0 degrees, move normally
+            self.x = self.x + dx
+            self.y = self.y + dy
+        elseif self.rotation == 1 then
+            -- 90 degrees, swap dx and dy (rotate movement)
+            self.x = self.x - dy
+            self.y = self.y + dx
+        elseif self.rotation == 2 then
+            -- 180 degrees, invert both directions
+            self.x = self.x - dx
+            self.y = self.y - dy
+        elseif self.rotation == 3 then
+            -- 270 degrees, swap and invert dx and dy
+            self.x = self.x + dy
+            self.y = self.y - dx
+        end
+    end
+
 
 
     self.index = self.x + self.y * fs.worldSize
 end
 
-function spos:up(n)
-    self:move(0, -n)
+function spos:up(n, rotationRelative)
+    self:move(0, -n, rotationRelative)
 end
-function spos:down(n)
+function spos:down(n, rotationRelative)
     self:move(0, n)
 end
-function spos:left(n)
+function spos:left(n, rotationRelative)
     self:move(-n, 0)
 end
-function spos:right(n)
+function spos:right(n, rotationRelative)
     self:move(n, 0)
 end
 ---rotates 90degree*n cw
@@ -57,7 +79,9 @@ function fs.realCoordToPos(x, y, rotation)
     return fs.coordToPos(math.floor(x/fs.tileSize), math.floor(y/fs.tileSize))
 end
 
-
+function fs.posToRealCoord(pos)
+    return {x=pos.x*fs.tileSize, y=pos.y*fs.tileSize}
+end
 
 function fs.posToCoord(spos)
     assert(type(spos)=="table", "spos not a table")
