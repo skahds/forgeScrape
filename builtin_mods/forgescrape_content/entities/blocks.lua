@@ -24,6 +24,5 @@ fs.defineBlock("furnace", {
     image = "furnace",
     onActive = function (selfEnt, target)
         fs.deleteEnt(target)
-        print("delete")
     end
 })

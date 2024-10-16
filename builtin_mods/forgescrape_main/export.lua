@@ -12,10 +12,11 @@ end
 
 ]]
 
+---this is pretty low level, mods shouldn't call this, if an ent have spos fill the index with spos.index
 ---@param ent any
-function fs.addToWorld(ent, spos)
-    if spos then
-        table.insert(world[spos.index], ent)
+function fs.addToWorld(ent, index)
+    if index then
+        table.insert(world[index], ent)
     else
         table.insert(world.unordered, ent)
     end
@@ -26,7 +27,7 @@ function fs.deleteEnt(ent)
 
     else
         for k, entity in pairs(world.unordered) do
-            if entity.x == ent.x and entity.y == ent.y then
+            if entity == ent then
                 table.remove(world.unordered, k)
             end
         end
@@ -59,10 +60,14 @@ function fs.trySpawnBlock(name, spos)
     print("Spawning block at", spos.x, spos.y, spos.index)
     print("self rotation=", spos.rotation)
     local ent = fs.entities[name]:new({spos = spos})
-    fs.addToWorld(ent, spos)
+    fs.addToWorld(ent, spos.index)
     fs.call("forgeScrape:entitySpawned")
 end
 
+---spawns an ore at x and y to world, this is realCoord and not sposBased
+---@param name string
+---@param x integer
+---@param y integer
 function fs.trySpawnOre(name, x, y)
     assert(fs.entities[name].ore, "entity not an ore")
     fs.addToWorld(fs.entities[name]:new({x=x, y=y}))

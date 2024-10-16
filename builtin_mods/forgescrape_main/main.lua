@@ -23,11 +23,14 @@ end)
 
 fs.on("@render", function ()
     for _, group in pairs(world) do
-        for index, entity in pairs(group) do
-            -- will add renderLayer later
-            if type(entity.draw) == "function" then
-                entity:draw()
+        if _ == "unordered" or type(_) == "number" then
+            for index, entity in pairs(group) do
+                -- will add renderLayer later
+                if type(entity.draw) == "function" then
+                    entity:draw()
+                end
             end
         end
+
     end
 end)
