@@ -21,7 +21,7 @@ fs.on("@update", function ()
     end
 end)
 
-fs.on("@render", function ()
+fs.on("@renderer:render", function ()
     for _, group in pairs(world) do
         if _ == "unordered" or type(_) == "number" then
             for index, entity in pairs(group) do

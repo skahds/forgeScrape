@@ -1,3 +1,5 @@
+fs = {}
+
 require('broadcast')
 require('class')
 require('modLoading')
@@ -13,7 +15,9 @@ function love.update(dt)
 end
 
 function love.draw()
-    fs.call("@render")
+    fs.call("@renderer:render")
+    --later on will be used:
+    fs.call("@renderer:renderOutsideCamera")
 end
 
 function love.keyreleased(key)

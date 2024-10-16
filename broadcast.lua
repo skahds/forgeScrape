@@ -1,6 +1,5 @@
 unpack = table.unpack or unpack
 
-fs = {}
 fs.events = {}
 fs.storage = {}
 
