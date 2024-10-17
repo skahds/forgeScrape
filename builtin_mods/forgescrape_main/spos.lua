@@ -69,6 +69,10 @@ function fs.getPos(ent)
     return ent.spos
 end
 
+function fs.getEnt(pos)
+    return world[pos.index][1]
+end
+
 function fs.coordToPos(x, y, rotation)
     local index = x + y * fs.worldSize
     local rotation = rotation or 0

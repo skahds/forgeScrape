@@ -27,6 +27,7 @@ fs.on("@renderer:render", function ()
                 -- will add renderLayer later
                 if type(entity.draw) == "function" then
                     entity:draw()
+                    fs.call("@renderer:renderedEntity", entity)
                 end
             end
         end
