@@ -15,7 +15,6 @@ fs.on("@update", function ()
         for index, entity in pairs(group) do
             if type(entity.update) == "function" then
                 entity:update()
-
             end
         end
     end
@@ -31,6 +30,11 @@ fs.on("@renderer:render", function ()
                 end
             end
         end
+    end
+end)
 
+fs.on("@keyreleased", function (key)
+    if key == "escape" then
+        love.event.quit()
     end
 end)

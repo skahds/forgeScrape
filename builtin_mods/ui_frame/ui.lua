@@ -7,13 +7,19 @@ fs.ui.pointer = {}
 fs.ui.pointer = fs.ui.inky.pointer(fs.ui.scene)
 
 
-ui = class()
-function ui:init(args)
-    entity.init(self, args)
-end
 
-function ui:draw()
-    if self.render then
-        self:render(self.x, self.y, self.width, self.height)
-    end
-end
+
+-- ui = class()
+-- function ui:init(args)
+--     self.x = args.x
+--     self.y = args.y
+--     self.width = args.width
+--     self.height = args.height
+--     self.inky = fs.ui.elements[args.button]
+-- end
+
+-- function ui:draw()
+--     if self.inky.render then
+--         self.inky:render(self.x, self.y, self.width, self.height)
+--     end
+-- end

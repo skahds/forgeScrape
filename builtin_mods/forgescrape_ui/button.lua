@@ -1,4 +1,4 @@
-fs.defineUI(function(self)
+return fs.ui.inky.defineElement(function(self)
 	self.props.count = 0
 
 	self:onPointer("release", function()
