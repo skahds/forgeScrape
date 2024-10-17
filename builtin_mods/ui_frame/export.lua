@@ -3,8 +3,9 @@ fs.ui = {
 }
 world.ui = {}
 
+--important for args, require name and scene
 function fs.ui.addUI(args)
-    local newElement = fs.ui.elements[args.name](fs.ui.scene)
+    local newElement = fs.ui.elements[args.name](fs.ui.scene[args.scene])
     fs.addToWorld(newElement, "ui")
 end
 

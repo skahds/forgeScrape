@@ -1,9 +1,9 @@
 fs.on("@renderer:renderOutsideCamera", function ()
-    fs.ui.scene:beginFrame()
+    fs.ui.scene.main:beginFrame()
     for i, ui in ipairs(world.ui) do
         ui:render(10, 10, 100, 100)
     end
-    fs.ui.scene:finishFrame()
+    fs.ui.scene.main:finishFrame()
 end)
 
 fs.on("@update", function ()
