@@ -9,4 +9,8 @@ for k, ent in pairs(fs.entities) do
     end
 end
 
-fs.ui.addUI({name="button", scene="main", x=600, y=100, width=100, height=100})
+
+fs.ui.defineUI("builtin_mods.inventory.base_inventory", "display_base")
+
+
+

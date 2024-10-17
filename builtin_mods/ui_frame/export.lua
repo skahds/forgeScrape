@@ -17,8 +17,9 @@ function fs.ui.addUI(args)
         width=args.width,
     }
     fs.addToWorld(fullTable, "ui")
+    return world.ui[#world.ui]
 end
 
-function fs.defineUI(path, name)
+function fs.ui.defineUI(path, name)
     fs.ui.elements[name] = require(path)
 end
